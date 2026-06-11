@@ -46,7 +46,6 @@ public class TerrainSpriteAssignor
     }
     public Sprite GetTerrainSprite(eTerrain terrain,int index=-1)
     {
-
         Sprite[] terrainSprite = _terrainSpriteList[GetTerrainSpriteIndex(terrain)];
 
         if (CommonModule.IsEmpty(terrainSprite)) return null;

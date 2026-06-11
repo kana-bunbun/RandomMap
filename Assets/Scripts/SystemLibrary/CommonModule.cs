@@ -25,7 +25,7 @@ public class CommonModule
     public static bool IsEmpty<T>(List<T> list)
     {
         if (list == null) return true;
-        return list.Capacity < 1;
+        return list.Count < 1;
     }
     /// <summary>
     /// 配列に対して有効な数字か判定
@@ -51,7 +51,7 @@ public class CommonModule
     public static bool IsEnableIndex<T>(List<T> list, int index)
     {
         if (IsEmpty(list)) return false;
-        return (index >= 0) && (index < list.Capacity);
+        return (index >= 0) && (list.Count > index);
     }
 
 }

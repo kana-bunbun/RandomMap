@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class MapSquare 
+public class MapSquare
 {
-    public int Id { get; private set; } = 1;
+    public int ID
+
+    { get; private set; } = 1;
     public int posX { get; private set; } = -1;
     public int posY { get; private set; } = -1;
 
@@ -13,11 +15,14 @@ public class MapSquare
     // 参照カウンタ式のGC(ガベージコレクション)が呼ばれなくなる
     // ガベージコレクション : 特定のアルゴリズムに則った自動的な参照の破棄
     // 参照カウンタ式のGC : 参照されている箇所をカウントしておき、カウントが0になったら解放される
-    public int roomId { get; private set; } = -1;
+    public int roomID { get; private set; } = -1;
 
-    public MapSquare(int Id,int posX,int posY)
+    // マスにいるキャラクターのID
+    public int characterID { get; private set; } = -1;
+
+    public MapSquare(int ID, int posX, int posY)
     {
-        this.Id = Id;
+        this.ID = ID;
         this.posX = posX;
         this.posY = posY;
     }
@@ -26,10 +31,24 @@ public class MapSquare
         this.terrain = terrain;
     }
 
-    public void SetRoomID(int id)
+    public void SetRoomID(int ID)
     {
-        this.roomId = id;
+        this.roomID = ID;
     }
 
 
+    /// <summary>
+    /// マスにいるキャラクターの設定
+    /// </summary>
+    public void SetCharacter(int characterID)
+    {
+        this.characterID = characterID; 
+    }
+    /// <summary>
+    /// マスにいるキャラクター情報の削除
+    /// </summary>
+    public void RemoveCharacter()
+    {
+        this.characterID = -1;
+    }
 }

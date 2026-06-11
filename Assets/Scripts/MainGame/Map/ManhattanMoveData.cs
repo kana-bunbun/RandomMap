@@ -5,13 +5,13 @@ using System.Collections.Generic;
 /// </summary>
 public class ManhattanMoveData
 {
-    public int sourceSquareId = -1;
-    public int targetSquareId = -1;
+    public int sourceSquareID = -1;
+    public int targetSquareID = -1;
     eDirectionFour dir = eDirectionFour.Invalid;
-    public ManhattanMoveData(int sourceSquareId, int targetSquareId, eDirectionFour dir)
+    public ManhattanMoveData(int sourceSquareID, int targetSquareID, eDirectionFour dir)
     {
-        this.sourceSquareId=sourceSquareId;
-        this.targetSquareId=targetSquareId;
+        this.sourceSquareID=sourceSquareID;
+        this.targetSquareID=targetSquareID;
         this.dir = dir;
     }
 

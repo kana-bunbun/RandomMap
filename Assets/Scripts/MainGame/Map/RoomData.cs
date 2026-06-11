@@ -5,20 +5,20 @@ public class RoomData
 {
 
     // 識別IDリスト
-    public int Id { get; private set; } = -1;
+    public int ID { get; private set; } = -1;
 
     //部屋マスのIDリスト
-    public List<int> squareIdList { get; private set; } = null;
+    public List<int> squareIDList { get; private set; } = null;
 
     /// <summary>
     /// 使用前の準備
     /// </summary>
-    public void SetUp(int Id, List<int> squareIdList)
+    public void SetUp(int ID, List<int> squareIDList)
     {
-        this.Id = Id;
-        this.squareIdList = squareIdList;
+        this.ID = ID;
+        this.squareIDList = squareIDList;
 
-        SetRoomIdAll(Id);
+        SetRoomIDAll(ID);
 
     }
 
@@ -27,20 +27,20 @@ public class RoomData
     /// </summary>
     public void Teardown()
     {
-        Id = -1;
+        ID = -1;
 
-        SetRoomIdAll(Id);
-        squareIdList = null;
+        SetRoomIDAll(ID);
+        squareIDList = null;
     }
-    private void SetRoomIdAll(int Id)
+    private void SetRoomIDAll(int ID)
     {
         // リストがnullならreturn
-        if (CommonModule.IsEmpty(this.squareIdList)) return;
-        for (int i = 0; i < this.squareIdList.Count; i++)
+        if (CommonModule.IsEmpty(this.squareIDList)) return;
+        for (int i = 0; i < this.squareIDList.Count; i++)
         {
-            SquareObject square = MapSquareManager.instance.GetSquare(this.squareIdList[i]);
+            SquareObject square = MapSquareManager.instance.GetSquare(this.squareIDList[i]);
             if (square == null) continue;
-            square.squareData.SetRoomID(Id);
+            square.squareData.SetRoomID(ID);
         }
     }
 }

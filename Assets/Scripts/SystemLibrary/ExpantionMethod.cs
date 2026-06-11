@@ -13,7 +13,7 @@ public static class ExpantionMethod
     public static eDirectionFour ReverseDerection(this eDirectionFour direction)
     {
         int result = (int)direction+2;
-        if (result > (int)eDirectionFour.Max) result -= (int)eDirectionFour.Max;
+        if (result >= (int)eDirectionFour.Max) result -= (int)eDirectionFour.Max;
 
         return (eDirectionFour)result;
     }

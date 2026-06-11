@@ -33,3 +33,34 @@ public enum eDirectionFour
     Left,
     Max
 }
+public enum eDirectionEight
+{
+    Invalid = -1,   // 使われない想定の値
+    Up,
+    UpRight,
+    Right,
+    DownRight,
+    Down,
+    DownLeft,
+    Left,
+    UpLeft,
+    Max
+}
+
+// フロア終了要因
+public enum eFloorEndReason {
+    Invalid,    // 終了していない状態
+    GameOver,   // プレイヤーの敗北
+    Stair,      // 階段移動
+}
+
+// ダンジョン終了要因
+public enum eDungeonEndReason
+{
+    Invalid,    // 終了していない状態
+    GameOver,   // プレイヤーの敗北
+    GameClear,  // ダンジョン制覇
+}
+
+
+

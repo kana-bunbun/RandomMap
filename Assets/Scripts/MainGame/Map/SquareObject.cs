@@ -10,12 +10,17 @@ public class SquareObject : MonoBehaviour
     static readonly float _SQUARE_SIZE_RAITO = 0.32f;
     [SerializeField]
     private SpriteRenderer _terrainSprite = null;
+
+    // キャラクター配置用のルートオブジェクト
+    [SerializeField]
+    private Transform _characterRoot = null;
+
     public MapSquare squareData = null;
 
 
-    public void SetUp(int Id,int posX,int posY)
+    public void SetUp(int ID,int posX,int posY)
     {
-        squareData = new MapSquare(Id, posX, posY);
+        squareData = new MapSquare(ID, posX, posY);
 
         Vector3 position = Vector3.zero;
         position.x = posX * _SQUARE_SIZE_RAITO;
@@ -40,4 +45,5 @@ public class SquareObject : MonoBehaviour
 
         _terrainSprite.sprite = TerrainSpriteAssignor.instance.GetTerrainSprite(terrain, index);
     }
+ public Transform GetCharacterRoot(){ return _characterRoot;  }
 }
