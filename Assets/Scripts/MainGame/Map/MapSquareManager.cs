@@ -81,22 +81,30 @@ public class MapSquareManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 指定座標から指定方向の隣接マスを取得(四方向)
+    /// </summary>
     public SquareObject GetToDirSquare(int x, int y, eDirectionFour direction)
     {
         // 隣接マス取得
         ToDirPosition(ref x, ref y, direction);
         // 座標指定のマス取得
-
-
+        return GetSquare(x, y);
+    }
+    /// <summary>
+    /// 指定座標から指定方向の隣接マスを取得(八方向)
+    /// </summary>
+    public SquareObject GetToDirSquare(int x, int y, eDirectionEight direction)
+    {
+        // 隣接マス取得
+        ToDirPosition(ref x, ref y, direction);
+        // 座標指定のマス取得
         return GetSquare(x, y);
     }
 
     /// <summary>
-    /// 指定座標の指定方向への座標取得
+    /// 指定座標の指定方向への座標取得(四方向)
     /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <param name="direction"></param>
     private void ToDirPosition(ref int x, ref int y, eDirectionFour direction)
     {
         switch (direction)
@@ -113,6 +121,44 @@ public class MapSquareManager : MonoBehaviour
             case eDirectionFour.Left:
                 x--;
                 break;
+        }
+    }
+    /// <summary>
+    /// 指定座標の指定方向への座標取得(八方向)
+    /// </summary>
+    private void ToDirPosition(ref int x, ref int y, eDirectionEight direction)
+    {
+        switch (direction)
+        {
+            case eDirectionEight.Up:
+                y++;
+                break;
+            case eDirectionEight.Right:
+                x++;
+                break;
+            case eDirectionEight.Down:
+                y--;
+                break;
+            case eDirectionEight.Left:
+                x--;
+                break;
+            case eDirectionEight.UpRight:
+                x++;
+                y++;
+                break;
+            case eDirectionEight.UpLeft:
+                x--;
+                y++;
+                break;
+            case eDirectionEight.DownRight:
+                x++;
+                y--;
+                break;
+            case eDirectionEight.DownLeft:
+                x--;
+                y--;
+                break;
+
         }
     }
 

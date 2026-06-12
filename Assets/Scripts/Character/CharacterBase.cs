@@ -12,6 +12,9 @@ public abstract class CharacterBase
     public int posY { get; private set; } = -1;
     // 向き
     public eDirectionEight direction { get; private set; } = eDirectionEight.Invalid;
+    // プレイヤーか否か
+    public abstract bool IsPlayer();
+
 
     // 使用前準備
     public void SetUp(int ID)
@@ -39,4 +42,14 @@ public abstract class CharacterBase
         // マスにキャラクターIDを設定
         square.squareData.SetCharacter(ID);
     }
+
+    /// <summary>
+    /// 向き変更
+    /// </summary>
+    /// <param name="direction"></param>
+    public void SetDirection(eDirectionEight direction)
+    {
+        this.direction = direction;
+    }
+
 }

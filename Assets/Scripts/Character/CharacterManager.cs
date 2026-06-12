@@ -2,13 +2,14 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using Unity.VisualScripting;
+using UnityEditor;
 
 /// <summary>
 /// キャラクター管理
 /// </summary>
 public class CharacterManager:MonoBehaviour
 {
-    public static CharacterManager _instance = null;
+    public static CharacterManager instance = null;
     // 使用中キャラリスト
     private List<CharacterObject> _useList = null;
     // 未使用キャラリスト
@@ -24,7 +25,7 @@ public class CharacterManager:MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        _instance = this;
+        instance = this;
 
         _useList = new List<CharacterObject>(GameConst.ENEMY_MAX_COUNT + GameConst.PLAYER_MAX_COUNT);
         // プレイヤーオブジェクトを必要数生成して未使用状態にする
@@ -88,5 +89,56 @@ public class CharacterManager:MonoBehaviour
         player.SetSquare(MapSquareManager.instance.GetSquare(squareID));
     }
 
+    /// <summary>
+    /// キャラクター削除
+    /// </summary>
+    public void DeleteCharacter(CharacterObject deleteCharacter)
+    {
+        // 使用リストから削除
+        //CharacterObject deleteCharacter = GetCharacter(ID);
+        if (deleteCharacter == null) return;
+        // プールにしたいので破棄しない
+        _useList[deleteCharacter.characterData.ID] = null;
+        // 片付け処理を呼ぶ
+        deleteCharacter.TearDown();
+        // 未使用リストに追加
+        if (deleteCharacter.characterData.IsPlayer())
+        {
+            // プレイヤーの未使用リストに追加
+            _unusePlayerList.Add(deleteCharacter);
+        }
+        else
+        {
+            // エネミーの未使用リストに追加
+            _unuseEnemyList.Add(deleteCharacter);
+        }
+    }
+
+    public CharacterObject GetCharacter(int ID)
+    {
+        // 有効なインデックスか判定
+        if (!CommonModule.IsEnableIndex(_useList, ID))
+        {
+            return null;
+        }
+        return _useList[ID];
+    }
+
+    public CharacterObject GetPlayer()
+    {
+        if(CommonModule.IsEmpty(_useList)) return null;
+
+        for (int i = 0; i < _useList.Count; i++)
+        {
+            CharacterObject character= _useList[i];
+            // キャラクターがnullまたはプレイヤーでないとき
+            if (character == null||
+                !character.characterData.IsPlayer()) continue;
+            return character;
+
+
+        }
+        return null;
+    }
 
 }

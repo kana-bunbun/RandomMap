@@ -7,12 +7,13 @@ public class CharacterObject : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _characterSprite = null;
     // キャラクターの情報
-    private CharacterBase characterData = null;
+    public CharacterBase characterData { get; private set; } = null;
 
     // 初期化
     public void Initialize(CharacterBase character)
     {
         characterData = character;
+        gameObject.SetActive(false);
     }
     // 使用前準備
     public void SetUp(int ID)
